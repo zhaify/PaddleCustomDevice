@@ -17,7 +17,7 @@
 #include "habanalabs/synapse_common_types.h"
 #include "kernels/funcs.h"
 #include "kernels/hpu_operator.h"
-#include "utils/utills.h"
+#include "utils/utils.h"
 
 namespace custom_kernel {
 
@@ -87,8 +87,9 @@ void RmsNormKernel(const Context& dev_ctx,
   std::vector<int64_t> inv_var_dim = phi::vectorize<int64_t>(inv_var->dims());
 
   ns_LayerNormKernel::Params params;
-  memset(reinterpret_cast<void *>(&params), 0x00,
-             sizeof(ns_LayerNormKernel::Params ));
+  memset(reinterpret_cast<void*>(&params),
+         0x00,
+         sizeof(ns_LayerNormKernel::Params));
   params.epsValid = true;
   params.eps = epsilon;
 
